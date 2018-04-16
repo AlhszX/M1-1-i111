@@ -10,25 +10,25 @@ public class Main {
         };
 
         int month, value, min;
-        int temIn, temOut, temValue;
+        int in, out, temValue;
 
-        for (int i = 0; i < 2; i++) {
+        for (int year = 0; year < data.length; year++) {
             value = 0;
-            min = data[i][0];
+            min = data[year][0];
 
-            for (month = 1; month < 12; month++) {
-                temIn = data[i][month - 1];
-                temOut = data[i][month];
+            for (month = 1; month < data[year].length; month++) {
+                in = data[year][month - 1];
+                out = data[year][month];
 
-                if (temIn >= temOut) {
-                    temValue = temOut - min;
+                if (in >= out) {
+                    temValue = out - min;
                     if (temValue < value) {
                         value = temValue;
                     }
-                } else if (temOut > min) {
-                    min = temOut;
+                } else if (out > min) {
+                    min = out;
                 }
-                
+
             }
 
             System.out.println(value);
