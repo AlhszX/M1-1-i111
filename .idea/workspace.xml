@@ -15,8 +15,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/XIN/i111/report1/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+            <state relative-caret-position="-433">
+              <caret line="27" column="54" lean-forward="true" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -30,8 +30,10 @@
       <find>temValue</find>
       <find>i</find>
       <find>minOut</find>
-      <find>maxOut</find>
       <find>mybeBadAlg</find>
+      <find>year</find>
+      <find>numberOfData</find>
+      <find>maxOut</find>
     </findStrings>
     <replaceStrings>
       <replace>month</replace>
@@ -41,6 +43,9 @@
       <replace>maxOut</replace>
       <replace>minOut</replace>
       <replace>maybeBadAlg</replace>
+      <replace>numberOfData</replace>
+      <replace>dataGroup</replace>
+      <replace>maxIn</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -53,11 +58,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="117" />
-    <option name="y" value="-36" />
-    <option name="width" value="1941" />
-    <option name="height" value="1101" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-11" />
+    <option name="width" value="1100" />
+    <option name="height" value="1391" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -82,6 +86,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="i111" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="M1-1-i111-report" type="b2602c69:ProjectViewProjectNode" />
+              <item name="M1-1-i111-report" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="i111" type="462c0819:PsiDirectoryNode" />
+              <item name="report1" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -93,6 +104,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -149,7 +161,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1455" height="935" extended-state="7" />
+    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -161,11 +173,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3296837" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.47688565" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2498265" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1908397" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -200,8 +212,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/XIN/i111/report1/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+        <state relative-caret-position="-433">
+          <caret line="27" column="54" lean-forward="true" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="54" />
         </state>
       </provider>
     </entry>

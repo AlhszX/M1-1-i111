@@ -13,7 +13,8 @@ public class Main {
                 {1, 1, 5, 4, 3, 8, 10, 12},
                 {900, 9, 99, 199, 299, 30, 50, 20, 1, 6, 9},
                 {0, 0, 1, 1, 5, 4, 3, 6, 5, 43, 7, 5, 3, 9, 3, 0, 3},
-                {-1, -5, -8, -7, -3, -6, -9, -1, -1, -5, -9, 0}
+                {-1, -5, -8, -7, -3, -6, -9, -1, -1, -5, -9, 0},
+                {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}
         };
 
         value = theGoodAlg(data);
@@ -30,28 +31,28 @@ public class Main {
     }
 
     private static int[] theGoodAlg(int[][] d) {
-        int month, value, maxOut;
-        int in, out, temValue;
+        int month, value, maxIn;
+        int flag, now, temValue;
         int[] v = new int[d.length];
-        for (int year = 0; year < d.length; year++) {
+        for (int dataGroup = 0; dataGroup < d.length; dataGroup++) {
             value = 0;
-            maxOut = d[year][0];
+            maxIn = d[dataGroup][0];
 
-            for (month = 1; month < d[year].length; month++) {
-                in = d[year][month - 1];
-                out = d[year][month];
+            for (month = 1; month < d[dataGroup].length; month++) {
+                flag = d[dataGroup][month - 1];
+                now = d[dataGroup][month];
 
-                if (in >= out) {
-                    temValue = out - maxOut;
+                if (flag >= now) {
+                    temValue = now - maxIn;
                     if (temValue < value) {
                         value = temValue;
                     }
-                } else if (out > maxOut) {
-                    maxOut = out;
+                } else if (now > maxIn) {
+                    maxIn = now;
                 }
 
             }
-            v[year] = value;
+            v[dataGroup] = value;
         }
         return v;
     }
@@ -59,19 +60,19 @@ public class Main {
     private static int[] maybeBadAlg(int[][] d) {
 
         int[] v = new int[d.length];
-        for (int year = 0; year < d.length; year++) {
+        for (int dataGroup = 0; dataGroup < d.length; dataGroup++) {
 
-            int temIn, temOut, in, out, temValue, value,minOut;
-            temIn = d[year][0];
-            temOut = d[year][1];
+            int temIn, temOut, in, out, temValue, value, minOut;
+            temIn = d[dataGroup][0];
+            temOut = d[dataGroup][1];
             value = temOut - temIn;
             temValue = value;
 
-            for (in = 0; in < d[year].length - 1; in++) {
-                temIn = d[year][in];
-                minOut = d[year][in + 1];
-                for (out = in + 1; out < d[year].length; out++) {
-                    temOut = d[year][out];
+            for (in = 0; in < d[dataGroup].length; in++) {
+                temIn = d[dataGroup][in];
+                minOut = d[dataGroup][in];
+                for (out = in; out < d[dataGroup].length; out++) {
+                    temOut = d[dataGroup][out];
                     if (minOut >= temOut) {
                         minOut = temOut;
                         temValue = minOut - temIn;
@@ -83,7 +84,7 @@ public class Main {
                 }
 
             }
-            v[year] = value;
+            v[dataGroup] = value;
         }
         return v;
     }
