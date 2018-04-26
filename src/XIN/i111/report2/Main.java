@@ -1,5 +1,6 @@
 package XIN.i111.report2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
@@ -11,10 +12,11 @@ public class Main {
         //二分探索法で10,33,73を探す
         //「余裕」1000までの素数 適当な三数字を探す
         //データをhash x = x % 30 で格納して
-        //add関数の htb[j] != 0 のチェック回数をカウントし，その25回分の合計を求めよ．
-        //「余裕」　m=30ではなく，28,29,50の場合についても調べ，その結果を考察せよ．
-
+        //add関数の htb[j] != 0 のチェック回数をカウントし，その25回分の合計を求める
+        //「余裕」　m=28 or 29 or 50　htb[j] != 0 のチェック回数
+        System.out.println();
         System.out.println("i111 report 2");
+        System.out.println();
 
         int[] maxNum = new int[]{100, 1000};
         int[][] wantNumber = new int[][]{
@@ -22,62 +24,60 @@ public class Main {
                 {getRandom(0, 333), getRandom(333, 666), getRandom(666, 1000)}
         };
 
-        int numOfPrim;
-        int[][] prim = new int[2][];
-        int n;
+        //int numOfPrim;
+        Integer[][] prim = new Integer[maxNum.length][];
+        ArrayList<Integer> primList;
 
         boolean ifGet;
         boolean[] flag;
 
-        int[] hashParameter = new int[maxNum.length];
+        int[] hashBaseParameter = new int[]{30, 29, 28, 50};
+        int[][] hashParameter = new int[maxNum.length][hashBaseParameter.length];
         int[] hashS;
 
-        for (int numN = 0; numN < maxNum.length; numN++) {
+        for (int sequenceNum = 0; sequenceNum < maxNum.length; sequenceNum++) {
 
-            flag = sieveOfEratosthenes(maxNum[numN]);
-            numOfPrim = 0;
+            primList = new ArrayList<>();
 
-            for (int i = 0; i < flag.length; i++) {
-                if (flag[i]) {
-                    System.out.printf("%d ", i);
-                    numOfPrim++;
+            flag = sieveOfEratosthenes(maxNum[sequenceNum]);
+
+            System.out.println("prime table is :");
+            for (int number = 0; number < flag.length; number++) {
+                if (flag[number]) {
+                    primList.add(number);
+                    System.out.printf("%d ", number);
                 }
             }
+            prim[sequenceNum] = primList.toArray(new Integer[0]);
             System.out.println();
-            System.out.println("all prim number :" + numOfPrim);
+            System.out.println();
+            System.out.println("before " + maxNum[sequenceNum] + " all prim number :" + prim[sequenceNum].length);
 
-            prim[numN] = new int[numOfPrim];
-            n = 0;
-            for (int i = 0; i < flag.length; i++) {
-                if (flag[i]) {
-                    prim[numN][n] = i;
-                    n++;
-                }
-            }
-
-            for (int wantN = 0; wantN < wantNumber[numN].length; wantN++) {
-                ifGet = bisectionMethod(prim[numN], wantNumber[numN][wantN]);
+            for (int wantN = 0; wantN < wantNumber[sequenceNum].length; wantN++) {
+                ifGet = bisectionMethod(prim[sequenceNum], wantNumber[sequenceNum][wantN]);
                 if (!ifGet) {
-                    System.out.println("No " + wantNumber[numN][wantN]);
+                    System.out.println("No " + wantNumber[sequenceNum][wantN]);
                 }
             }
 
-            hashParameter[numN] = (int) (prim[numN].length / (25.0 / 30.0));
+            for (int parameterNum = 0; parameterNum < hashBaseParameter.length; parameterNum++) {
 
-            System.out.println("hash parameter is :" + hashParameter[numN]);
-            hashS = setHashSequence(hashParameter[numN], prim[numN]);
+                hashParameter[sequenceNum][parameterNum] = (int) (prim[sequenceNum].length / (25.0 / hashBaseParameter[parameterNum]));
 
-            for (int element : hashS) {
-                System.out.printf("%d ", element);
+                System.out.println();
+                System.out.println();
+                hashS = setHashSequence(hashParameter[sequenceNum][parameterNum], prim[sequenceNum]);
+
+                System.out.println("hash table is :");
+                for (int element : hashS) {
+                    System.out.printf("%d ", element);
+                }
             }
-
             System.out.println();
             System.out.println();
-
         }
 
     }
-
 
     //sieve of Eratosthenes get prim number
     private static boolean[] sieveOfEratosthenes(int maxNum) {
@@ -105,7 +105,7 @@ public class Main {
     }
 
     //二分法
-    private static boolean bisectionMethod(int[] ascendingSequence, int wantNum) {
+    private static boolean bisectionMethod(Integer[] ascendingSequence, int wantNum) {
 
         int high = ascendingSequence.length;
         int low = 0;
@@ -135,9 +135,10 @@ public class Main {
     }
 
     //hashテーブルを作る
-    private static int[] setHashSequence(int hashParameter, int[] ascendingSequence) {
+    private static int[] setHashSequence(int hashParameter, Integer[] ascendingSequence) {
         int[] hashSeq = new int[hashParameter];//配列の初期化不要　Java int sequence default is 0
         int hashPlace;
+        int count = 0;
         //ppt code のadd関数(方法..?)と同じ
         for (int element : ascendingSequence) {
             //ppt code のhash関数(方法..?)と同じ
@@ -145,9 +146,11 @@ public class Main {
             //ppt codeのfind関数(方法..?)と同じ
             while (hashSeq[hashPlace] != 0) {
                 hashPlace = (hashPlace + 1) % hashParameter;
+                count++;
             }
             hashSeq[hashPlace] = element;
         }
+        System.out.println("when hash parameter is : " + hashParameter + ", data size is : " + ascendingSequence.length + ", not zero check :" + count + " times");
         return hashSeq;
     }
 
