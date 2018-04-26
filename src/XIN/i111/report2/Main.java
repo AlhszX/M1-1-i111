@@ -14,20 +14,26 @@ public class Main {
         //データをhash x = x % 30 で格納して
         //add関数の htb[j] != 0 のチェック回数をカウントし，その25回分の合計を求める
         //「余裕」　m=28 or 29 or 50　htb[j] != 0 のチェック回数
+
+        //System.out.println();はすべて綺麗な出力を作るためのものである　実際の意味がない
         System.out.println();
         System.out.println("i111 report 2");
         System.out.println();
 
-        int[] maxNum = new int[]{100, 1000};
-        int[][] wantNumber = new int[][]{
+        int[] maxNum = new int[]{100, 1000, 10000, 100000};//余裕
+
+        int[][] wantNumber = setTargetNum(maxNum);
+        /*int[][] wantNumber = new int[][]{
                 {10, 33, 73},
-                {getRandom(0, 333), getRandom(333, 666), getRandom(666, 1000)}
-        };
+                {getRandom(0, 333), getRandom(333*0.5, 666), getRandom(666*0.5, 1000)},
+                {getRandom(0, 3333), getRandom(3333*0.5, 6666), getRandom(6666*0.5, 10000)},
+                {getRandom(0, 33333), getRandom(33333*0.5, 66666), getRandom(66666*0.5, 100000)}
+        };*/
 
         //int numOfPrim;
         Integer[][] prim = new Integer[maxNum.length][];
         ArrayList<Integer> primList;
-
+        //篩のflag
         boolean ifGet;
         boolean[] flag;
 
@@ -100,7 +106,7 @@ public class Main {
     }
 
     //ランダムで1素数の中にさがしたい数字を生成する
-    private static int getRandom(int min, int max) {
+    private static int getRandom(double min, double max) {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
@@ -154,13 +160,20 @@ public class Main {
         return hashSeq;
     }
 
-    //
+    //自動的に探したい数字を設定する
+    private static int[][] setTargetNum(int[] maxNum) {
+        int[][] targetNum = new int[maxNum.length][3];
 
-    //hash search? search from hash sequence..?
-    //ニーズから見ると…多分いらない…？
-    /*private static boolean hashSearch() {
+        targetNum[0][0] = 10;
+        targetNum[0][1] = 33;
+        targetNum[0][2] = 73;
 
-        return false;
+        for (int n = 1; n < maxNum.length; n++) {
+            for (int i = 0; i < 3; i++) {
+                targetNum[n][i] = getRandom(0.33333333 * i * 0.5 * maxNum[n], 0.33333333 * (i + 1) * maxNum[n]);
+            }
+        }
+        return targetNum;
     }
-    */
+
 }
