@@ -20,7 +20,7 @@ public class Main {
         System.out.println("i111 report 2");
         System.out.println();
 
-        int[] maxNum = new int[]{100, 1000, 10000, 100000};//余裕
+        int[] maxNum = new int[]{100, 1000/*, 10000, 100000*/};//余裕
 
         int[][] wantNumber = setTargetNum(maxNum);
         /*int[][] wantNumber = new int[][]{
